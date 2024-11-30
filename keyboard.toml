@@ -1,0 +1,80 @@
+# Documentation: https://haobogu.github.io/rmk/keyboard_configuration.html
+[keyboard]
+name = "RMK Keyboard"
+product_name = "RMK Keyboard"
+vendor_id = 0x4c4b
+product_id = 0x4643
+manufacturer = "haobo"
+chip = "nrf52840"
+
+
+
+
+[layout]
+# WARNING: Currently row2col/col2row is set in RMK's feature gate, configs here do nothing actually
+# row2col = true
+rows = 4
+cols = 3
+layers = 2
+keymap = [
+    [
+        ["Kp7", "Kp8", "Kp9"],
+        ["Kp4", "Kp5", "Kp6"],
+        ["Kp1", "Kp2", "Kp3"],
+        ["Kp0", "MO(1)", "Dot"]
+    ],
+    [
+        ["_", "_", "_"],
+        ["_", "_", "_"],
+        ["_", "_", "_"],
+        ["_", "_", "_"]
+    ],
+]
+
+[light]
+# All light pins are high-active by default, uncomment if you want it to be low-active
+# capslock.pin = "PB2"
+# capslock.low_active = true
+# scrolllock.pin = "PA3"
+# scrolllock.low_active = true
+# Just ignore if no light pin is used for it
+# numslock.pin = "PA5"
+# numslock.low_active = true
+
+[storage]
+# Storage feature is enabled by default
+# enabled = false
+
+# !!! Warning: RMK uses last 2 sectors of your microcontroller's flash by default. You have to ensure that those flash space is not used.
+# If you're using a bootloader which puts itself at the end of the flast, like Adafruit_nRF52_Bootloader, RMK will break the bootloader.
+# Setting the `start_addr` manually to avoid this. See: https://haobogu.github.io/rmk/storage.html
+
+[ble]
+enabled = true
+
+
+[split]
+connection = "ble"
+
+
+[split.central]
+rows = 5
+cols = 5
+row_offset = 0
+col_offset = 0
+ble_addr = [0x18, 0xe2, 0x21, 0x80, 0xc0, 0xc7]
+input_pins = ["P1_14", "P1_15", "P1_13", "P1_12", "P0_03"]
+output_pins = ["P1_11", "P0_05", "P0_04", "P0_29", "P0_28"]
+
+
+[[split.peripheral]]
+rows = 5
+cols = 5
+row_offset = 5
+col_offset = 5
+ble_addr = [0x7e, 0xfe, 0x73, 0x9e, 0x66, 0xe3]
+input_pins = ["P1_14", "P1_15", "P1_13", "P1_12", "P0_03"]
+output_pins = ["P1_11", "P0_05", "P0_04", "P0_29", "P0_28"]
+
+
+
